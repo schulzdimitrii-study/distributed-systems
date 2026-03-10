@@ -4,4 +4,4 @@
 __pycache__
 *.pyc
 __pytest_cache__
-python-*.egg-info
+python_*.egg-info
