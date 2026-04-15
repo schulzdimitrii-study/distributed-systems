@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  fastapi:
+    build: 
+      context: .
+      dockerfile: app/Dockerfile
+    container_name: middleware_fastapi
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
