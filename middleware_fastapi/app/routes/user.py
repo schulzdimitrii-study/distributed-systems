@@ -6,7 +6,7 @@ user_router = APIRouter(prefix="/users", tags=["users"])
 
 fake_db: list[User] = []
 
-@user_router.post("/", response_model=User, status_code=201)
+@user_router.post("/create", response_model=User, status_code=201)
 def create_user(payload: UserCreate):
     nwe_id = len(fake_db) + 1
     
@@ -28,13 +28,13 @@ def get_user(user_id: int):
 def list_users():
     return fake_db
 
-@user_router.delete("/{user_id}", status_code=204)
+@user_router.delete("delete/{user_id}", status_code=204)
 def delete_user(user_id: int):
     global fake_db
     fake_db = [u for u in fake_db if u.id != user_id]
     return None
 
-@user_router.put("/{user_id}", response_model=User)
+@user_router.put("update/{user_id}", response_model=User)
 def update_user(user_id: int, payload: UserCreate):
     user = next((u for u in fake_db if u.id == user_id), None)
     if not user:
