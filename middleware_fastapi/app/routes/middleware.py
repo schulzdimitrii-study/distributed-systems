@@ -2,13 +2,13 @@ import time
 
 from fastapi import Request
 
-
+@app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     start_time = time.perf_counter()
     response = await call_next(request)
     process_time = time.perf_counter() - start_time
 
     response.headers["X-Process-Time"] = f"{process_time:.6f}"
-    print(f"Request: {request.method} {request.url} - Process time: {process_time:.6f} seconds")
+    print(f"Request: {request.method} {request.url} - Process time: {process_time:.6f}s")
 
     return response
