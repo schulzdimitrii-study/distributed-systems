@@ -28,13 +28,16 @@ def get_user(user_id: int):
 def list_users():
     return fake_db
 
-@user_router.delete("delete/{user_id}", status_code=204)
+@user_router.delete("/delete/{user_id}", status_code=204)
 def delete_user(user_id: int):
-    global fake_db
-    fake_db = [u for u in fake_db if u.id != user_id]
-    return None
+    if not any(u.id == user_id for u in fake_db):
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    fake_db.remove(next((u for u in fake_db if u.id == user_id)))
+    return {"message": "User deleted successfully"}
+    
 
-@user_router.put("update/{user_id}", response_model=User)
+@user_router.put("/update/{user_id}", response_model=User)
 def update_user(user_id: int, payload: UserCreate):
     user = next((u for u in fake_db if u.id == user_id), None)
     if not user:
