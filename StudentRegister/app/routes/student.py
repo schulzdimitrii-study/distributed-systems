@@ -2,7 +2,7 @@ from app.schemas.student import StudentCreate, Student, StudentUpdate
 from app.services.studentService import StudentService
 from fastapi import APIRouter, HTTPException
 
-student_router = APIRouter(prefix="/alunos", tags=["alunos"])
+student_router = APIRouter(prefix="/alunos", tags=["Alunos"])
 
 service = StudentService()
 
