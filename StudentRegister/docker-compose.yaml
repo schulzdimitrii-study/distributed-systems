@@ -1,9 +1,16 @@
 services:
-  web:
+  api:
     build: .
-    container_name: student_register_C216
+    container_name: middleware_api_C216
     ports:
       - "8000:8000"
     volumes:
       - .:/app
-    command: uvicorn main:app --host
+    restart: always
+  
+  tests:
+    build: .
+    container_name: middleware_tests_C216
+    volumes:
+      - .:/app
+    command: pytest -v
