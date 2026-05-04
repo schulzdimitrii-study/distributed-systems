@@ -12,5 +12,5 @@ app = FastAPI(
 app.include_router(student_router, prefix="/api/v1")
 
 @app.get("/", tags=["Healthcheck"])
-def read_root():
-    return {"status": "ok"}
+def read_root() -> dict:
+    return {"message": "API is running! 🚀"}
