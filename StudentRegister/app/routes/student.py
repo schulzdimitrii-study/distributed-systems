@@ -33,6 +33,7 @@ def delete_student(student_id: str) -> None:
     success = service.delete_student(student_id)
     if not success:
         raise HTTPException(status_code=404, detail="Student not found")
+    return {"message": "Student deleted successfully"}
 
 @student_router.delete("/", status_code=204)
 def reset_students() -> None:
