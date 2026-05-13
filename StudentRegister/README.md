@@ -105,13 +105,6 @@ docker-compose up --build
 
 A API ficará disponível em `http://localhost:8000`.
 
-### Localmente (sem Docker)
-
-```bash
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
 > Certifique-se de ter o PostgreSQL rodando e o `DATABASE_URL` configurado no `.env`.
 
 ## Testes
@@ -119,7 +112,7 @@ uvicorn main:app --reload
 Os testes rodam **sem necessidade de banco de dados real**. A conexão com o PostgreSQL é substituída por um mock in-memory via `unittest.mock.patch`, garantindo isolamento e velocidade.
 
 ```bash
-pytest test/ -v
+docker run tests
 ```
 
 Cada teste parte de um estado limpo: o banco fake é resetado antes e após cada execução via fixture `autouse`.
@@ -130,22 +123,6 @@ O projeto demonstra o uso de middlewares no framework:
 
 - **Logging Middleware** (`logging.py`): Intercepta e informa no terminal detalhes das requisições entrantes e respostas prontas junto com o tempo total de processamento no back-end.
 - **Custom Header Middleware** (`custom_header.py`): Adiciona o header `X-App-Version: 1.0` de forma padronizada nas respostas tratadas pelo serviço.
-
-## Endpoints
-
-### Healthcheck
-
-`GET /`
-
-Retorna o status verificando a disponibilidade.
-
-#### Resposta
-
-```json
-{
-	"message": "API is running! 🚀"
-}
-```
 
 ### Alunos
 
