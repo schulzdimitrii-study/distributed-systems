@@ -6,3 +6,6 @@ __pycache__
 __pytest_cache__
 python_*.egg-info
 *.pytest_cache
+.env
+.env.local
+.DS_Store
