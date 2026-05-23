@@ -1,16 +1,29 @@
 services:
-  api:
-    build: .
-    container_name: middleware_api_C216
+  backend:
+    build: ./backend
+    container_name: middleware_backend_C216
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
+      - ./backend:/app
     env_file:
       - .env
     depends_on:
       - db
-  
+
+  frontend:
+    build: ./frontend
+    container_name: middleware_frontend_C216
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    env_file:
+      - .env
+    depends_on:
+      - backend
+
   db:
     image: postgres:latest
     container_name: middleware_postgres_C216
@@ -20,14 +33,14 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./app/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./backend/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
 
   tests:
-    build: .
+    build: ./backend
     container_name: middleware_tests_C216
     volumes:
-      - .:/app
+      - ./backend:/app
     command: pytest -s -v
     depends_on:
       - db

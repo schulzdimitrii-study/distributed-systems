@@ -1,5 +1,5 @@
-from app.schemas.student import StudentCreate, Student, StudentUpdate
-from app.services.student_service import StudentService
+from schemas.student import StudentCreate, Student, StudentUpdate
+from services.student_service import StudentService
 from fastapi import APIRouter, HTTPException
 
 student_router = APIRouter(prefix="/alunos", tags=["Alunos"])
