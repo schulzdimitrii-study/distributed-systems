@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Professores Cadastrados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    {% include '_messages.html' %}
+    <div class="container mt-5">
+        <h2>Lista de Alunos</h2>
+        {% if students %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Curso</th>
+                    <th>Matrícula</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.course }}</td>
+                    <td>{{ student.mat }}</td>
+                    <td>
+                        <a href="{{ url_for('student.edit', student_id=student.id) }}"
+                            class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{{ url_for('student.delete', student_id=student.id) }}"
+                            class="btn btn-sm btn-danger">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Nenhum aluno cadastrado ainda.</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>
