@@ -1,10 +1,8 @@
 from schemas.student import StudentCreate, Student, StudentUpdate
-from services.student_service import StudentService
+from services.student_service import service
 from fastapi import APIRouter, HTTPException
 
 student_router = APIRouter(prefix="/alunos", tags=["Alunos"])
-
-service = StudentService()
 
 @student_router.post("/", response_model=Student, status_code=201)
 async def create_student(payload: StudentCreate) -> Student:

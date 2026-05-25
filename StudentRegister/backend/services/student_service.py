@@ -140,4 +140,6 @@ class StudentService:
         if not match:
             raise ValueError("Invalid student id format")
         return match.group(1).upper(), int(match.group(2))
-        
+
+
+service = StudentService()

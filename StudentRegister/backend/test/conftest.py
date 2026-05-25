@@ -1,8 +1,13 @@
 import pytest
 from unittest.mock import patch, MagicMock
 from fastapi.testclient import TestClient
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).parent.parent))
+
 from main import app
-from app.routes.student import service as student_service
+from services.student_service import service as student_service
 
 _db: list[dict] = []
 
@@ -71,7 +76,7 @@ def reset_state():
 
 @pytest.fixture(autouse=True)
 def mock_connection(reset_state):
-    with patch("app.services.student_service.get_connection", new=_fake_get_connection):
+    with patch("services.student_service.get_connection", new=_fake_get_connection):
         yield
 
 
