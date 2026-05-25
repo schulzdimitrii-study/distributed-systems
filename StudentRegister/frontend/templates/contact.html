@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contato - Sistema de Alunos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <div class="d-flex flex-column justify-content-center align-items-center min-vh-100 text-center gap-4">
+        <div>
+            <span class="text-uppercase tracking-wider small fw-bold">Fale Conosco</span>
+            <h1 class="display-5 fw-bold mt-1 mb-3">Contato</h1>
+            <p style="max-width: 600px;">Para dúvidas, suporte ou feedback, envie um e-mail para <a
+                    href="mailto:dimitri.schulz@ges.inatel.br"
+                    class="text-primary text-light fw-bold">dimitri.schulz@ges.inatel.br</a></p>
+        </div>
+        <div>
+            <a href="{{ url_for('home') }}" class="btn btn-secondary px-4">Voltar</a>
+        </div>
+    </div>
+</body>
+
+</html>
