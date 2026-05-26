@@ -1,5 +1,5 @@
-from app.schemas.student import Student, StudentCreate, StudentUpdate
-from app.db.connection import get_connection
+from schemas.student import Student, StudentCreate, StudentUpdate
+from db.connection import get_connection
 import re
 
 
@@ -140,4 +140,6 @@ class StudentService:
         if not match:
             raise ValueError("Invalid student id format")
         return match.group(1).upper(), int(match.group(2))
-        
+
+
+service = StudentService()
